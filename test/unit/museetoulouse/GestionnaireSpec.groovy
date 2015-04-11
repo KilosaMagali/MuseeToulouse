@@ -2,6 +2,7 @@ package museetoulouse
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
@@ -15,6 +16,27 @@ class GestionnaireSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+
+    @Unroll
+    void "test la validite d'un gestionnaire valide"(String unNom) {
+        given: "un gestionnaire initialise correctement"
+        Gestionnaire gestionnaire = new Gestionnaire(nom: unNom)
+        expect: "le gestionnaire est valide"
+        gestionnaire.validate() == true
+        and: "il n'a aucune musée"
+        !gestionnaire.musees
+
+        where:
+        unNom = 'MonsieurLeGestionnaire'
+    }
+
+    @Unroll
+    void "test l'invalidite d'un gestionnaire "(String unNom) {
+        given: "un gestionnaire initialise de maniere incorrecte"
+        Gestionnaire gestionnaire = new Gestionnaire(nom: unNom)
+        expect: "le gestionnaire est invalide"
+        gestionnaire.validate() == false
+        where:
+        unNom = ''
     }
 }

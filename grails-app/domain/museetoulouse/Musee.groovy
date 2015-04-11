@@ -18,5 +18,7 @@ class Musee {
         gestionnaire nullable: false
         accesMetro blank: true
         accesBus blank: true
+        demandesVisite nullable: true
+        gestionnaire nullable: false
     }
 }

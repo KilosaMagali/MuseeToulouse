@@ -8,7 +8,7 @@ class Musee {
     String accesBus
     Adresse adresse
     Gestionnaire gestionnaire
-    static hasMany = [demandesVisite : DemandeVisite]
+    static hasMany = [demandesVisite : DemandeVisiteMusee]
 
     static constraints = {
         nom blank: false, nullable: false

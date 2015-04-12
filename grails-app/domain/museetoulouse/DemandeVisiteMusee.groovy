@@ -1,10 +1,14 @@
 package museetoulouse
 
 class DemandeVisiteMusee {
-    Date dateDemandeVisite
-    Musee musee;
-    DemandeVisite demandeVisiste;
+
+    Date dateDemande
+    Musee musee
+    DemandeVisite demandeVisite
+
     static constraints = {
-        dateDemandeVisite nullable: false
+        dateDemande (validator: {val, obj -> val?.after(new Date() - 1)})
     }
+
+
 }

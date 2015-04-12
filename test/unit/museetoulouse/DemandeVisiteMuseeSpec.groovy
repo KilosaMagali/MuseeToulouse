@@ -15,12 +15,10 @@ class DemandeVisiteMuseeSpec extends Specification {
 
     def cleanup() {
     }
-
-
     @Unroll
     void "test une demande de visite musée valide"(Musee musee, DemandeVisite demandeDeVisite, Date date) {
 
-        given: "une demande valide"
+        given: "une demande valid"
         DemandeVisiteMusee DemandeVisiteMusee = new DemandeVisiteMusee(musee: musee, demandeVisite: demandeDeVisite, dateDemande: date)
 
         expect: ""
@@ -45,4 +43,6 @@ class DemandeVisiteMuseeSpec extends Specification {
         Mock(Musee) | null                | new Date()
         null        | Mock(DemandeVisite) | new Date()
     }
+
+
 }

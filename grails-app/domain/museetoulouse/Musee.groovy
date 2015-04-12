@@ -13,12 +13,8 @@ class Musee {
     static constraints = {
         nom blank: false, nullable: false
         horaireOuverture blank: false, nullable: false
-        adresse nullable: false
-        telephone blank: false, nullable: true
-        gestionnaire nullable: false
-        accesMetro blank: true
-        accesBus blank: true
-        demandesVisite nullable: true
-        gestionnaire nullable: false
+        telephone blank: false, nullable: false
+        accesMetro blank: false, nullable: true
+        accesBus  blank: false, nullable: true
     }
 }

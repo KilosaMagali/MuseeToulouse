@@ -18,7 +18,7 @@ class GestionnaireSpec extends Specification {
 
 
     @Unroll
-    void "test la validite d'un gestionnaire valide"(String unNom) {
+    void "test la validite d'un gestionnaire"(String unNom) {
         given: "un gestionnaire initialise correctement"
         Gestionnaire gestionnaire = new Gestionnaire(nom: unNom)
         expect: "le gestionnaire est valide"

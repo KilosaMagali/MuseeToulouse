@@ -9,6 +9,7 @@ class Musee {
     Adresse adresse
     Gestionnaire gestionnaire
     static hasMany = [demandesVisite : DemandeVisiteMusee]
+    static embedded = ['adresse']
 
     static constraints = {
         nom blank: false, nullable: false

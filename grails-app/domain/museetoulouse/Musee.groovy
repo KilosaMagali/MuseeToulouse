@@ -18,4 +18,7 @@ class Musee {
         accesMetro blank: false, nullable: true
         accesBus  blank: false, nullable: true
     }
+    String toString() {
+        "$nom $telephone $accesMetro $accesBus $adresse $gestionnaire"
+    }
 }

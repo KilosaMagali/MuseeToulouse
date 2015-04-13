@@ -16,4 +16,6 @@ class DemandeVisite {
         dateFinPeriode nullable: false
         code blank: false, nullable: false
     }
+
+
 }

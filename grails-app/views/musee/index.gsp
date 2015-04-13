@@ -33,7 +33,8 @@
                         <label for="codePostal">
                             Code Postale :
                         </label>
-                        <g:textField name="codePostal"/>
+                        <g:select name="codePostal"
+                                  from="${museetoulouse.Adresse.list().codePostal.unique()}" />
                     </div>
                     <div class="fieldcontain">
                         <label for="rue">

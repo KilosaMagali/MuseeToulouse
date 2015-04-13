@@ -11,4 +11,5 @@ class Adresse {
         codePostal blank: false, nullable: false
         ville blank: false, nullable: false
     }
+
 }

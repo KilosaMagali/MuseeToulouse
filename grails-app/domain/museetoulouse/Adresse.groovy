@@ -11,4 +11,7 @@ class Adresse {
         codePostal blank: false, nullable: false
         ville blank: false, nullable: false
     }
+         String toString() {
+            "$numero $rue \n $codePostal $ville"
+        }
 }

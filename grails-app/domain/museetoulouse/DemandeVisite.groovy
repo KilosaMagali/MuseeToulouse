@@ -1,14 +1,21 @@
 package museetoulouse
 
 class DemandeVisite {
-    int code
-    Date dateDebut
-    Date dateFin
-    int nombreVisiteurs
+    String code
+    Date dateDebutPeriode
+    Date dateFinPeriode
+    int nbPersonnes
     String statut
+    static hasMany = [musees : DemandeVisiteMusee]
+
 
     static constraints = {
-        statut blank: false
-        nombreVisiteurs min: 1, max: 6
+        statut inList: ["En cours de traitement","Confirmée", "Refusée"]
+        nbPersonnes min: 1, max: 6
+        dateDebutPeriode nullable: false
+        dateFinPeriode nullable: false
+        code blank: false, nullable: false
     }
+
+
 }

@@ -9,40 +9,36 @@ import spock.lang.Specification
 @TestFor(DemandeVisite)
 class DemandeVisiteSpec extends Specification {
 
-    def setup() {
-    }
+    void "test  DemandeVisite valide"(String unCode,int nombre, String unStatut, Date unDebut, Date uneFin) {
+        given: "Une Demande de Visite initialisé correctement"
 
-    def cleanup() {
-    }
-
-    void "test DemandeVisite valide"() {
-        given: "Une Demande de Visite"
-
-        DemandeVisite demandeVisite = new DemandeVisite(code: unCode, dateDebut: unDebut, dateFin: uneFin,
-                nombreVisiteurs: nombre, statut: unStatut)
+        DemandeVisite demandeVisite = new DemandeVisite(code: unCode, dateDebutPeriode: unDebut, dateFinPeriode: uneFin,
+                nbPersonnes: nombre, statut: unStatut)
 
         expect: "la DemandeVisite est valide"
         demandeVisite.validate() == true
 
         where:
-        unCode  |   nombre  |   unStatut   | unDebut                 |uneFin
-        1       | 4         |   "Attente"  |new Date(1972, 6, 17)    |new Date(1972, 6, 17)
-        2       | 5         |   "confirmé"  | new Date(1972, 6, 17)   |new Date(1972, 6, 17)
-        3       | 1         |   "Annuler"  | new Date(1972, 6, 17)   |new Date(1972, 6, 17)
+        unCode  |   nombre  |   unStatut                 |  unDebut    |   uneFin
+        "0001"  | 4         |   "En cours de traitement" |  Mock(Date) |   Mock(Date)
+        "OOO2"  | 5         |   "En cours de traitement" |  Mock(Date) |   Mock(Date)
+        "0003"  | 1         |   "En cours de traitement" |  Mock(Date) |   Mock(Date)
     }
 
-    void "test DemandeVisite non valide"() {
-        given: "Une Demande de Visite"
+    void "test DemandeVisite non valide"(String unCode,int nombre, String unStatut, Date unDebut, Date uneFin) {
+        given: "Une Demande de Visite initialisée de maniere incorrecte"
 
-        DemandeVisite demandeVisite = new DemandeVisite(code: unCode, dateDebut: unDebut, dateFin: uneFin,
-                nombreVisiteurs: nombre, statut: unStatut)
+        DemandeVisite demandeVisite = new DemandeVisite(code: unCode, dateDebutPeriode: unDebut, dateFinPeriode: uneFin,
+                nbPersonnes: nombre, statut: unStatut)
 
-        expect: "Validation"
+        expect: "DemandeVisite invalide"
         demandeVisite.validate() == false
 
         where:
-        unCode  |   nombre  |   unStatut   | unDebut                 |uneFin
-        1       | 0         |   ''         |new Date(1972, 6, 17)    |new Date(1972, 6, 17)
-        2       | 7        |   "confirmé"  | new Date(1972, 6, 17)   |new Date(1972, 6, 17)
+        unCode  |   nombre  |   unStatut                    | unDebut       |uneFin
+        "0001"  | 0         |   "En cours de traitement"    | Mock(Date) |   Mock(Date)
+        2       | 7         |   "confirmé"                  | Mock(Date) |   Mock(Date)
+        null    | 3         |   "En cours de traitement"    | Mock(Date) |   Mock(Date)
+        "0001"  | 0         |   ""                          | Mock(Date) | Mock(Date)
     }
 }

@@ -8,15 +8,17 @@ class Musee {
     String accesBus
     Adresse adresse
     Gestionnaire gestionnaire
-    static hasMany = [demandesVisite : DemandeVisite]
+    static hasMany = [demandesVisite : DemandeVisiteMusee]
+    static embedded = ['adresse']
 
     static constraints = {
         nom blank: false, nullable: false
         horaireOuverture blank: false, nullable: false
-        adresse nullable: false
-        telephone blank: false, nullable: true
-        gestionnaire nullable: false
-        accesMetro blank: true
-        accesBus blank: true
+        telephone blank: false, nullable: false
+        accesMetro blank: false, nullable: true
+        accesBus  blank: false, nullable: true
+    }
+    String toString() {
+        "$nom $telephone $accesMetro $accesBus $adresse $gestionnaire"
     }
 }

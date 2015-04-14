@@ -11,7 +11,8 @@ MuseeService museeService
 
     def doSearchMusee() {
         def museeList = museeService.searchMusee(params.nom,params.codePostal, params.rue)
-        render(view: 'index', model: [museeInstanceList:museeList, museeInstanceCount: museeList.size()])
+        render(view: 'doSearchMusee', model: [museeInstanceList:museeList, museeInstanceCount: museeList.size()])
+        //[museeInstanceList:museeList, museeInstanceCount: museeList.size()]
     }
 
     def index(Integer max) {

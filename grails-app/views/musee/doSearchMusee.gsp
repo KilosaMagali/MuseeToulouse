@@ -22,6 +22,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                <div>
                 <g:each in="${museeInstanceList}" status="i" var="museeInstance">
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
@@ -32,9 +33,14 @@
                         <td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
                         <td>${fieldValue(bean: museeInstance, field: "horaireOuverture")}</td>
                         <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "gestionnaire")}</g:link></td>
+                        <td>
+                            <input value="Ajouter" type="submit">
 
+                        </td>
                     </tr>
                 </g:each>
+                </div>
+
                 </tbody>
             </table>
 

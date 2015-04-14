@@ -105,9 +105,7 @@
                 <g:textField name="rue"/>
             </div>
             <div style="float: right">
-                <span class="buttons" >
-                    <input value="Submit" type="submit">
-                </span>
+                    <input value="Rechercher" type="submit">
             </div>
         </fieldset>
 

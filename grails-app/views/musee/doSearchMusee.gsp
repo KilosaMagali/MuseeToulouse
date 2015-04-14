@@ -45,7 +45,6 @@
             </table>
 
 
-            <div class="pagination">
 				<g:paginate total="${museeInstanceCount ?: 0}" />
 			</div>
 		</div>

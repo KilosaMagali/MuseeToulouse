@@ -17,9 +17,13 @@
 		<g:layoutHead/>
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="logo.png" alt="Grails"/></a></div>
+		<!--<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="logo.png" alt="Grails"/></a></div>
+		-->
+    <g:render template="/layouts/header"/>
 		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
+		<div class="footer" role="contentinfo" align="center" >JEE 2014/2015</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+
+
 	</body>
 </html>

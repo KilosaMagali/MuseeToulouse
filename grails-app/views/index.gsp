@@ -94,15 +94,15 @@
                 border: 1px solid black;
                 width: 45%;
             }
+            #index{
+                margin-left: 35%;
+            }
 
 		</style>
 	</head>
 	<body>
+<div id="index">
 
-    <div id="page-left"></br>
-        <h1>Application musée Toulouse</h1>
-
-        <div id="controller-list" role="navigation">
             <h2>Acceder aux pages :</h2>
             <ul>
                 <li><g:link class="controller" controller="musee" action="index">Liste des musées</g:link></li>
@@ -110,28 +110,33 @@
                 <li><g:link class="controller" controller="demandeVisiteMusee" action="index">Demande de visite</g:link></li>
             </ul>
         </div>
-    </div>
-    <g:form>
-        <div id="search">
+        <g:form controller="musee" action="doSearchMusee">
             <fieldset class="form">
-                <h1> Rechercher un musée</h1>
-                <label for="nom">
-                    Nom Musée :
-                </label>
-                <g:textField name="nom"/></br></br>
-                <label for="codePostal">
-                    Code Postale :
-                </label>
-                <g:select name="codePostal"
-                          from="${museetoulouse.Adresse.list().codePostal.unique()}" /></br></br>
-                <label for="rue">
-                    Le nom Rue :
-                </label>
-                <g:textField name="rue"/></br></br>
+                <div class="fieldcontain">
+                    <label for="nom">
+                        Nom Musée :
+                    </label>
+                    <g:textField name="nom"/>
+
+                </div>
+                <div class="fieldcontain">
+                    <label for="codePostal">
+                        Code Postale :
+                    </label>
+                    <g:select name="codePostal"
+                              from="${museetoulouse.Adresse.list().codePostal.unique()}" />
+                </div>
+                <div class="fieldcontain">
+                    <label for="rue">
+                        Le nom Rue :
+                    </label>
+                    <g:textField name="rue"/>
+                </div>
                 <div style="float: right">
-                    <g:actionSubmit action="doSearchMusee" value="Rechercher" />
+                    <input value="Rechercher" type="submit">
+                </div>
             </fieldset>
-        </div>
-    </g:form>
+
+        </g:form>
 	</body>
 </html>

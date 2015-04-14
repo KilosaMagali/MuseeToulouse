@@ -10,11 +10,6 @@ import spock.lang.Unroll
 @TestFor(MuseePrefere)
 class MuseePrefereSpec extends Specification {
 
-    def setup() {
-    }
-
-    def cleanup() {
-    }
 
 
 }

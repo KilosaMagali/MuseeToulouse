@@ -51,3 +51,4 @@
 		</div>
 	</body>
 </html>
+<input type="hidden" name="whateverYouWant" value="${sec.loggedInUserInfo(field: 'username')}" />

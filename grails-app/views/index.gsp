@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Welcome to Grails</title>
+		<title>Musée Toulouse</title>
 		<style type="text/css" media="screen">
 			#status {
 				background-color: #eee;
@@ -77,38 +77,66 @@
 
 				#page-body h1 {
 					margin-top: 0;
+                    color: brown;
 				}
+                #page-left h1 {
+                    margin-top: 0;
+                    color: brown;
+                }
 			}
+            #search {
+                float: right;
+                border: 1px solid black;
+                width: 50%;
+            }
+            #page-left{
+                float: left;
+                border: 1px solid black;
+                width: 45%;
+            }
+            #index{
+                margin-left: 35%;
+            }
+
 		</style>
 	</head>
 	<body>
-    <g:form controller="musee" action="doSearchMusee">
-        <fieldset class="form">
-            <div class="fieldcontain">
-                <label for="nom">
-                    Nom Musée :
-                </label>
-                <g:textField name="nom"/>
+<div id="index">
 
-            </div>
-            <div class="fieldcontain">
-                <label for="codePostal">
-                    Code Postale :
-                </label>
-                <g:select name="codePostal"
-                          from="${museetoulouse.Adresse.list().codePostal.unique()}" />
-            </div>
-            <div class="fieldcontain">
-                <label for="rue">
-                    Le nom Rue :
-                </label>
-                <g:textField name="rue"/>
-            </div>
-            <div style="float: right">
+            <h2>Acceder aux pages :</h2>
+            <ul>
+                <li><g:link class="controller" controller="musee" action="index">Liste des musées</g:link></li>
+                <li><g:link class="controller" controller="gestionnaire" action="index">Gestionaire</g:link></li>
+                <li><g:link class="controller" controller="demandeVisiteMusee" action="index">Demande de visite</g:link></li>
+            </ul>
+        </div>
+        <g:form controller="musee" action="doSearchMusee">
+            <fieldset class="form">
+                <div class="fieldcontain">
+                    <label for="nom">
+                        Nom Musée :
+                    </label>
+                    <g:textField name="nom"/>
+
+                </div>
+                <div class="fieldcontain">
+                    <label for="codePostal">
+                        Code Postale :
+                    </label>
+                    <g:select name="codePostal"
+                              from="${museetoulouse.Adresse.list().codePostal.unique()}" />
+                </div>
+                <div class="fieldcontain">
+                    <label for="rue">
+                        Le nom Rue :
+                    </label>
+                    <g:textField name="rue"/>
+                </div>
+                <div style="float: right">
                     <input value="Rechercher" type="submit">
-            </div>
-        </fieldset>
+                </div>
+            </fieldset>
 
-    </g:form>
+        </g:form>
 	</body>
 </html>

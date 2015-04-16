@@ -6,6 +6,7 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'musee.label', default: 'Musee')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+
 	</head>
 	<body>
 		<a href="#list-musee" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -20,34 +21,6 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-            <g:form>
-                <fieldset class="form">
-                    <div class="fieldcontain">
-                        <label for="nom">
-                            Nom Musée :
-                        </label>
-                        <g:textField name="nom"/>
-
-                    </div>
-                    <div class="fieldcontain">
-                        <label for="codePostal">
-                            Code Postale :
-                        </label>
-                        <g:select name="codePostal"
-                                  from="${museetoulouse.Adresse.list().codePostal.unique()}" />
-                    </div>
-                    <div class="fieldcontain">
-                        <label for="rue">
-                            Le nom Rue :
-                        </label>
-                        <g:textField name="rue"/>
-                    </div>
-                    <div style="float: right">
-                        <g:actionSubmit action="doSearchMusee" value="Rechercher" />
-                    </div>
-                </fieldset>
-
-            </g:form>
             <table>
                 <thead>
                 <tr>
@@ -81,7 +54,7 @@
 
 
             <div class="pagination">
-				<g:paginate total="${museeInstanceCount ?: 0}" />
+				<g:paginate max="5" total="${museeInstanceCount ?: 0}" />
 			</div>
 		</div>
 	</body>

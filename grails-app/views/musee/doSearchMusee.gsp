@@ -22,7 +22,15 @@
 	</head>
 	<body>
     <%
+
         museetoulouse.MuseePrefere mesPreferes = session.getAttribute("mesPreferes")
+
+        if(!mesPreferes) {
+            println ("Allocation!")
+            mesPreferes = new MuseePrefere(idSession: session.getId())
+            session["mesPreferes"] = mesPreferes
+
+    }
 
         %>
     <a href="#list-livre" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -121,6 +129,7 @@
                         <td>${fieldValue(bean: museeInstance, field: "horaireOuverture")}</td>
                         <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "gestionnaire")}</g:link></td>
                         <td>
+                            <%  if(mesPreferes?.museePreferes) { %>
                             <g:if test="${mesPreferes.museePreferes.asList()*.nom.contains(museeInstance.nom)}">
                             <g:form controller="museePrefere" action="addToMesPreferes">
                                 <input type="hidden" name="nomMusee" value="${fieldValue(bean: museeInstance, field: "nom")}" />
@@ -135,7 +144,13 @@
                                     <input value="Ajouter" type="submit">
                                 </g:form>
                             </g:else>
-
+                            <% } else {%>
+                            <g:form controller="museePrefere" action="addToMesPreferes">
+                                <input type="hidden" name="nomMusee" value="${fieldValue(bean: museeInstance, field: "nom")}" />
+                                <input type="hidden" name="previousSearchList" value="${museeInstanceList}" />
+                                <input value="Ajouter" type="submit">
+                            </g:form>
+                            <% } %>
                         </td>
                     </tr>
                 </g:each>

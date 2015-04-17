@@ -23,7 +23,7 @@
 		-->
     <g:render template="/layouts/header"/>
 		<g:layoutBody/>
-		<div class="footer" role="contentinfo" style="background-color: #C96952" ></div>
+		<div class="footer" role="contentinfo" style="background-color: #C96952" align="center" >JEE 2014/2015</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 
 

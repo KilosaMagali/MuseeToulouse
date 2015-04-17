@@ -1,4 +1,4 @@
-
+<%@ page import="museetoulouse.MuseePrefere" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,7 +11,9 @@
             float: right;
             border: 1px solid black;
             width: 50%;
+            margin-right: 0%;
         }
+
         #left {
             float: left;
             border: 1px solid black;
@@ -20,82 +22,138 @@
         </style>
 	</head>
 	<body>
-    <a href="#list-livre" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+    <%
+
+        museetoulouse.MuseePrefere mesPreferes = session.getAttribute("mesPreferes")
+
+        if(!mesPreferes) {
+            println ("Allocation!")
+            mesPreferes = new MuseePrefere(idSession: session.getId())
+            session["mesPreferes"] = mesPreferes
+
+        }
+
+    %>
     <div class="nav" role="navigation">
         <ul>
-            <li id="left">
-                <g:form controller="musee" action="doSearchMusee">
-                    <h1> Rechercher un musée</h1>
-                <fieldset class="form">
-                            Nom Musée :
-                        <g:textField name="nom" placeholder=" Entrer nom"/></br></br>
-                            Code Postale :
-                        <g:select name="codePostal"
-                                  from="${museetoulouse.Adresse.list().codePostal.unique()}" /></br></br>
-                            Le nom Rue :
-                        <g:textField name="rue" placeholder=" Entrer rue"/></br></br>
-                        <div style="float:right"><input value="Rechercher" type="submit"></div>
-                </fieldset>
-            </g:form>
+            <li></br>
+                <h2>Votre recherche contient <u style="color: #AA0E0E">${museeInstanceCount ?: 0}</u> résultat(s)</h2></br>
+            <h4><u>Vous pouvez ajouter des musées aux Favoris</u></h4></br>
+                <a href="http://localhost:8080/MuseeToulouse/"><img src="../images/icon_previous.png"> Retourner à la page de recherche</a>
             </li>
             <li id="right">
-                <h1> Liste des Musées Préféres</h1>
-                <table>
+                <h1 style="color: #BE5B5B" align="center"><b><u> Liste des Musées Préféres</u></b></h1>
+                <table border="1px solid #BE5B5B ">
                     <thead>
 
                     <tr>
-
                         <th><g:message code="musee.nom.label" default="Nom Musee" /></th>
-                        <th><g:message code="musee.nom.label" default="Favoris" /></th>
-                        <th><g:message code="musee.nom.label" default="Demande de visite" /></th>
-                        </tr>
+                        <th>
+                        <% if(mesPreferes?.museePreferes){ %>
+                        <g:form controller="museePrefere" action="removeAllFromMesPreferes">
+                            <input src="../images/close.png" value="Supprimer" type="image">
+                        </g:form>
+                        <% }
+                        %>
+                        </th>
+                    </tr>
                     <tbody>
-                <td>${fieldValue(bean: museeInstance, field: "nom")}</td>
-                <td><input value="Delete" type="submit"></td>
-                <td><input value="DemandeVisite" type="submit"></td>
-
+                    <%
+                        if(mesPreferes?.museePreferes){
+                    %>
+                    <g:each in="${mesPreferes.museePreferes}" status="i" var="musee">
+                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                            <g:form controller="museePrefere" action="removeFromMesPreferes">
+                                <input type="hidden" name="nomMusee" value="${fieldValue(bean: musee, field: "nom")}" />
+                                <td>${fieldValue(bean: musee, field: "nom")}</td>
+                                <td><input src="../images/delete.png" value="Supprimer" type="image"></td>
+                            </g:form>
+                        </tr>
+                    </g:each>
+                    <% }
+                    else {
+                    %>
+                    <tr>
+                        <td style="color: red"> La Liste est vide <img src="../images/warning.gif"></td>
+                    </tr>
+                    <%
+                        }
+                    %>
                     </tbody>
                 </table>
+                <div align="right" style="margin-bottom: 10px;margin-right:10px">
+                <%
+                    if(mesPreferes?.museePreferes){
+                %>
+                <g:form controller="demandeVisiteMusee" action="renderPageSaisirDemandeVisite">
+                    <th><input value="Demander Visite" type="submit" style="background-color: #999999" ></th>
+                </g:form>
+                <% }
+                else {
+                %>
+                <th><input value="Demander Visite" type="submit" disabled></th>
+                <% } %>
+                </div>
             </li>
         </ul>
     </div>
-            <table>
-                <thead>
-                <tr>
+    <table>
+        <thead>
+        <tr>
 
-                    <th><g:message code="musee.nom.label" default="Nom Musee" /></th>
-                    <th><g:message code="musee.telephone.label" default="Téléphone" /></th>
-                    <th><g:message code="musee.adresse.label" default="Adresse" /></th>
-                    <th><g:message code="musee.accesmetro.label" default="Metro" /></th>
-                    <th><g:message code="musee.accesbus.label" default="Bus" /></th>
-                    <th><g:message code="musee.horaire.label" default="Horaires" /></th>
-                    <th><g:message code="musee.gestionnaire.label" default="Gestionnaire" /></th>
-                    <th>Add Favoris</th>
+            <th><g:message code="musee.nom.label" default="Nom Musee" /></th>
+            <th><g:message code="musee.telephone.label" default="Téléphone" /></th>
+            <th><g:message code="musee.adresse.label" default="Adresse" /></th>
+            <th><g:message code="musee.accesmetro.label" default="Metro" /></th>
+            <th><g:message code="musee.accesbus.label" default="Bus" /></th>
+            <th><g:message code="musee.horaire.label" default="Horaires" /></th>
+            <th><g:message code="musee.gestionnaire.label" default="Gestionnaire" /></th>
+            <th>Add favoris</th>
 
+        </tr>
+        </thead>
+        <tbody>
+        <div>
+            <g:each in="${museeInstanceList}" status="i" var="museeInstance">
+                <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+
+                    <td>${fieldValue(bean: museeInstance, field: "nom")}</td>
+                    <td>${fieldValue(bean: museeInstance, field: "telephone")}</td>
+                    <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "adresse")}</g:link></td>
+                    <td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
+                    <td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
+                    <td>${fieldValue(bean: museeInstance, field: "horaireOuverture")}</td>
+                    <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "gestionnaire")}</g:link></td>
+                    <td>
+                        <%  if(mesPreferes?.museePreferes) { %>
+                        <g:if test="${mesPreferes.museePreferes.asList()*.nom.contains(museeInstance.nom)}">
+                            <g:form controller="museePrefere" action="addToMesPreferes">
+                                <input type="hidden" name="nomMusee" value="${fieldValue(bean: museeInstance, field: "nom")}" />
+                                <input type="hidden" name="previousSearchList" value="${museeInstanceList}" />
+                                <input src="../images/ajouter_favoris.png" value="Ajouter" type="image" disabled>
+                            </g:form>
+                        </g:if>
+                        <g:else>
+                            <g:form controller="museePrefere" action="addToMesPreferes">
+                                <input type="hidden" name="nomMusee" value="${fieldValue(bean: museeInstance, field: "nom")}" />
+                                <input type="hidden" name="previousSearchList" value="${museeInstanceList}" />
+                                <input src="../images/ajouter_favoris.png" value="Ajouter" type="image">
+                            </g:form>
+                        </g:else>
+                        <% } else {%>
+                        <g:form controller="museePrefere" action="addToMesPreferes">
+                            <input type="hidden" name="nomMusee" value="${fieldValue(bean: museeInstance, field: "nom")}" />
+                            <input type="hidden" name="previousSearchList" value="${museeInstanceList}" />
+                            <input src="../images/ajouter_favoris.png" value="Ajouter" type="image">
+                        </g:form>
+                        <% } %>
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                <div>
-                <g:each in="${museeInstanceList}" status="i" var="museeInstance">
-                    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+            </g:each>
+        </div>
 
-                        <td>${fieldValue(bean: museeInstance, field: "nom")}</td>
-                        <td>${fieldValue(bean: museeInstance, field: "telephone")}</td>
-                        <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "adresse")}</g:link></td>
-                        <td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
-                        <td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
-                        <td>${fieldValue(bean: museeInstance, field: "horaireOuverture")}</td>
-                        <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "gestionnaire")}</g:link></td>
-                        <td>
-                            <input value="Ajouter" type="submit">
-
-                        </td>
-                    </tr>
-                </g:each>
-                </div>
-
-                </tbody>
-            </table>
+        </tbody>
+    </table>
 
            <div class="pagination">
 				<g:paginate  total="${museeInstanceCount ?: 0}" />

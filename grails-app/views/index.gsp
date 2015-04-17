@@ -95,48 +95,44 @@
                 width: 45%;
             }
             #index{
-                margin-left: 35%;
+                margin-left: 20%;
+                border: 1px solid crimson;
+                width: 60%;
+                background-image:url(./images/background.jpg);
             }
 
 		</style>
 	</head>
 	<body>
-<div id="index">
+<div id="index" >
 
-            <h2>Acceder aux pages :</h2>
-            <ul>
-                <li><g:link class="controller" controller="musee" action="index">Liste des musées</g:link></li>
-                <li><g:link class="controller" controller="gestionnaire" action="index">Gestionaire</g:link></li>
-                <li><g:link class="controller" controller="demandeVisiteMusee" action="index">Demande de visite</g:link></li>
-            </ul>
-        </div>
+            <h1 align="center" style="color: brown">Rechercher Musée </h1>
         <g:form controller="musee" action="doSearchMusee">
             <fieldset class="form">
                 <div class="fieldcontain">
                     <label for="nom">
-                        Nom Musée :
+                       <b> Nom Musée :</b>
                     </label>
-                    <g:textField name="nom"/>
+                    <g:textField name="nom"  style="color: darkred"/>
 
                 </div>
                 <div class="fieldcontain">
                     <label for="codePostal">
-                        Code Postale :
+                       <b> Code Postale :</b>
                     </label>
-                    <g:select name="codePostal"
-                              from="${museetoulouse.Adresse.list().codePostal.unique()}" />
+                    <g:select name="codePostal" from="${museetoulouse.Adresse.list().codePostal.unique()}" style="color: darkred" />
                 </div>
                 <div class="fieldcontain">
                     <label for="rue">
-                        Le nom Rue :
+                       <b> Le nom Rue :</b>
                     </label>
-                    <g:textField name="rue"/>
+                    <g:textField name="rue"  style="color: darkred"/>
                 </div>
                 <div style="float: right">
-                    <input value="Rechercher" type="submit">
+                    <input value="Rechercher" src="./images/rechercher.png" type="image" >
                 </div>
             </fieldset>
-
         </g:form>
+</div>
 	</body>
 </html>

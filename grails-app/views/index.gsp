@@ -129,7 +129,7 @@
                     <g:textField name="rue"  style="color: darkred"/>
                 </div>
                 <div style="float: right">
-                    <input value="Rechercher" src="./images/rechercher.png" type="image" >
+                    <input value="Rechercher" src="./images/rechercher.png" type="image" style="height: 40px" >
                 </div>
             </fieldset>
         </g:form>

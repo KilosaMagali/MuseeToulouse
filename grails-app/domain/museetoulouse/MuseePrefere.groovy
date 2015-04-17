@@ -1,10 +1,13 @@
 package museetoulouse
 
 class MuseePrefere {
-    static hasMany = [Musees : Musee]
-
-    static constraints = {
-    }
+        String idSession
+        static hasMany = [museePreferes : Musee]
+        static constraints = {
+        }
+        static mapping = {
+            museePreferes fetch: "join"
+        }
 
 
 }

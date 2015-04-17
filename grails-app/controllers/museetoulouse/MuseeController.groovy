@@ -6,16 +6,9 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class MuseeController {
-MuseeService museeService
+    MuseeService museeService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def updateFavorisIndex() {
-        def musee = Musee.get(params.id)
-        if (musee) {
-            musee.favoris = !(musee.favoris)
-            museeService.insertOrUpdateMusee(musee, musee.getGestionnaire(), musee.getAdresse());
-        }
-    }
     def doSearchMusee() {
         params.max = 5
         def museeList = museeService.searchMusee(params.nom,params.codePostal, params.rue,params)

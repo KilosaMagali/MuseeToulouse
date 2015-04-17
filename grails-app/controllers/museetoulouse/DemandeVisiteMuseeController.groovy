@@ -13,6 +13,9 @@ class DemandeVisiteMuseeController {
         params.max = Math.min(max ?: 10, 100)
         respond DemandeVisiteMusee.list(params), model: [demandeVisiteMuseeInstanceCount: DemandeVisiteMusee.count()]
     }
+    def renderPageSaisirDemandeVisite() {
+        render(view: 'saisirDemandeVisite')
+    }
 
     def show(DemandeVisiteMusee demandeVisiteMuseeInstance) {
         respond demandeVisiteMuseeInstance

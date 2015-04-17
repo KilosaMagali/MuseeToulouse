@@ -35,12 +35,5 @@ class MuseeService {
         res
     }
 
-    def searchFavoris(boolean inFavoris,def params){
-        def criteria = Musee.createCriteria()
-        def res = criteria.list (max:params.max,offset:params.offset){
-            eq ('favoris', inFavoris)
-        }
-        res
-    }
 
 }

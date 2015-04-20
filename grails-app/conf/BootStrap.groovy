@@ -5,7 +5,6 @@ class BootStrap {
 
     InitialiserDonneesService initialiserDonneesService
 
-
     def init = { servletContext ->
 
                initialiserDonneesService.initialiserDonnees()

@@ -8,6 +8,7 @@ class UrlMappings {
         }
 
         "/"(view:"/index")
+       // "/" ( controller:'musee', action:'index' ) // Personnaliser Index page
         "500"(view:'/error')
 	}
 }

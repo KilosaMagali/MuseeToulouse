@@ -11,5 +11,13 @@ import spock.lang.Unroll
 class MuseePrefereSpec extends Specification {
 
 
+    def setup() {
+    }
 
+    def cleanup() {
+    }
+
+    void "test something"() {
+    }
 }
+

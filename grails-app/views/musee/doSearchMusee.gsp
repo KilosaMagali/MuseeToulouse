@@ -130,7 +130,7 @@
                             <g:form controller="museePrefere" action="addToMesPreferes">
                                 <input type="hidden" name="nomMusee" value="${fieldValue(bean: museeInstance, field: "nom")}" />
                                 <input type="hidden" name="previousSearchList" value="${museeInstanceList}" />
-                                <input src="../images/ajouter_favoris.png" value="Ajouter" type="image" disabled>
+                                <input src="../images/icon-disable.png" value="Ajouter" type="image" disabled>
                             </g:form>
                         </g:if>
                         <g:else>
@@ -156,7 +156,7 @@
     </table>
 
            <div class="pagination">
-				<g:paginate  total="${museeInstanceCount ?: 0}" />
+				<g:paginate  max="3" total="${museeInstanceCount ?: 0}" />
 			</div>
 		</div>
 

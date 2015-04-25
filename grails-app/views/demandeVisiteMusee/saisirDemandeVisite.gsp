@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ page import="museetoulouse.Musee" %>
+<%@ page import="museetoulouse.MuseePrefere; museetoulouse.Musee" %>
 <html>
 <head>
     <meta name="layout" content="main"/>
@@ -133,6 +133,58 @@
             </div>
         </fieldset>
     </g:form>
+</div>
+<div>
+    <%
+
+        museetoulouse.MuseePrefere mesPreferes = session.getAttribute("mesPreferes")
+
+        if(!mesPreferes) {
+            mesPreferes = new museetoulouse.MuseePrefere(idSession: session.getId())
+            session["mesPreferes"] = mesPreferes
+
+        }
+
+    %>
+    <h1 style="color: #BE5B5B" align="center"><b><u> Liste des Musées à associer à cette Demande</u></b></h1>
+    <table border="1px solid #BE5B5B ">
+        <thead>
+
+        <tr>
+            <th><g:message code="musee.nom.label" default="Nom Musee" /></th>
+            <th>
+                <% if(mesPreferes?.museePreferes){ %>
+                <g:form controller="museePrefere" action="removeAllFromMesPreferes">
+                    <input src="../images/close.png" placeholder="DeleteAll" value="Supprimer" type="image">
+                </g:form>
+                <% }
+                %>
+            </th>
+        </tr>
+        <tbody>
+        <%
+            if(mesPreferes?.museePreferes){
+        %>
+        <g:each in="${mesPreferes.museePreferes}" status="i" var="musee">
+            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                <g:form controller="museePrefere" action="removeFromMesPreferes">
+                    <input type="hidden" name="nomMusee" value="${fieldValue(bean: musee, field: "nom")}" />
+                    <td>${fieldValue(bean: musee, field: "nom")}</td>
+                    <td><input src="../images/delete.png" value="Supprimer" type="image"></td>
+                </g:form>
+            </tr>
+        </g:each>
+        <% }
+        else {
+        %>
+        <tr>
+            <td style="color: red"> La Liste est vide <img src="../images/warning.gif"></td>
+        </tr>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

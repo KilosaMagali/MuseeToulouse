@@ -103,6 +103,7 @@
 		</style>
 	</head>
 	<body>
+    <li><a class="Mes Demandes Visite" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 <div id="index" >
 
             <h1 align="center" style="color: brown">Rechercher Musée </h1>

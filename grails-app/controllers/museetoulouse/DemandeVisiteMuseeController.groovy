@@ -50,6 +50,8 @@ class DemandeVisiteMuseeController {
          demandeVisite.save()
          demandeVisiteMusee.save()
          println ("Demande de visite enregistrée, ton code est" + unCode)
+         mesPreferes.museePreferes.clear()
+         session["mesPreferes"]=mesPreferes
          render(view: "demandeVisiteEnregistree", model: [codeDemande: unCode, nbPersonnes: nbPersonnes,dateDebut : dateDebut, dateFin : dateFin,status: unStatut])
      }
 

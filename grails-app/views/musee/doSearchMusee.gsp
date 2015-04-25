@@ -27,7 +27,6 @@
         museetoulouse.MuseePrefere mesPreferes = session.getAttribute("mesPreferes")
 
         if(!mesPreferes) {
-            println ("Allocation!")
             mesPreferes = new MuseePrefere(idSession: session.getId())
             session["mesPreferes"] = mesPreferes
 
@@ -51,7 +50,7 @@
                         <th>
                         <% if(mesPreferes?.museePreferes){ %>
                         <g:form controller="museePrefere" action="removeAllFromMesPreferes">
-                            <input src="../images/close.png" value="Supprimer" type="image">
+                            <input src="../images/close.png" placeholder="DeleteAll" value="Supprimer" type="image">
                         </g:form>
                         <% }
                         %>
@@ -156,7 +155,7 @@
     </table>
 
            <div class="pagination">
-				<g:paginate  max="3" total="${museeInstanceCount ?: 0}" />
+				<g:paginate  max="5" total="${museeInstanceCount ?: 0}" />
 			</div>
 		</div>
 

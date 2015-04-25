@@ -19,6 +19,7 @@ class DemandeVisiteMuseeController {
     }
      def justCreatedDemandeVisiteMusee() {
          MuseePrefere mesPreferes = session.getAttribute("mesPreferes")
+         Random random=new Random()
          if (!mesPreferes) {
              println ("Allocation!")
              mesPreferes = new MuseePrefere(idSession: session.getId())
@@ -29,7 +30,7 @@ class DemandeVisiteMuseeController {
          int nbPersonnes = params.int('nbpersonnes')
          print("NOOW"+dateDebut+" "+dateFin+" "+ nbPersonnes+"Oh yeah")
          String unStatut = "En cours de traitement"
-         String unCode = "CODE"+""+nbPersonnes+""+mesPreferes.museePreferes.size()
+         String unCode = "CODE"+""+nbPersonnes+""+random.nextInt(1000)
          DemandeVisite demandeVisite = new DemandeVisite(code: unCode, dateDebutPeriode: dateDebut, dateFinPeriode: dateFin,
                  nbPersonnes: nbPersonnes, statut: unStatut)
          if(!demandeVisite.validate()) {
@@ -49,7 +50,7 @@ class DemandeVisiteMuseeController {
          demandeVisite.save()
          demandeVisiteMusee.save()
          println ("Demande de visite enregistrée, ton code est" + unCode)
-         render(view: "demandeVisiteEnregistree", model: [codeDemande: unCode, nbPersonnes: nbPersonnes,dateDebut : dateDebut, dateFin : dateFin])
+         render(view: "demandeVisiteEnregistree", model: [codeDemande: unCode, nbPersonnes: nbPersonnes,dateDebut : dateDebut, dateFin : dateFin,status: unStatut])
      }
 
     def show(DemandeVisiteMusee demandeVisiteMuseeInstance) {

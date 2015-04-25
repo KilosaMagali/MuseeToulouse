@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@ page import="museetoulouse.Musee" %>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta name="layout" content="main"/>
     <title>Musée Toulouse</title>
@@ -84,51 +84,42 @@
             color: brown;
         }
     }
-    #search {
-        float: right;
-        border: 1px solid black;
-        width: 50%;
-    }
-    #page-left{
-        float: left;
-        border: 1px solid black;
-        width: 45%;
-    }
+
+
     #index{
         margin-left: 20%;
         border: 1px solid crimson;
-        width: 60%;
-        background-image:url(./images/background.jpg);
+        width: 65%;
     }
 
     </style>
 </head>
 <body>
+<h1 align="center" style="color: black"><u> Votre demande a bien été enregistrée, Voici le resumé: </u></h1><br>
 <div id="index" >
-
-    <h1 align="center" style="color: brown"> Votre demande a bien été enregistrée, Voici le resumé: </h1>
     <fieldset class="form">
         <div class="fieldcontain">
-            <label>
-                <b>Date Debut: ${codeDemande}</b>
-            </label>
+
+               <li><p><b>Votre Code est:</b> <b style="color: #AA0E0E">${codeDemande}</b> (A conserver pour consulter votre demande)</p>
+               </li>
+        </div>
+        <div class="fieldcontain">
+
+               <li><b>Date Debut de visite:</b> <b style="color: #AA0E0E">${dateDebut}</b></li>
+
 
         </div>
         <div class="fieldcontain">
-            <label>
-                <b>Date Debut: ${dateDebut}</b>
-            </label>
+            <li><b>Date Fin de visite:</b> <b style="color: #AA0E0E">${dateFin}</b></li>
+
 
         </div>
         <div class="fieldcontain">
-            <label>
-                <b>Date Fin:${dateFin}</b>
-            </label>
+            <li><b>Nombre de personnes:</b> <b style="color: #AA0E0E">${nbPersonnes}</b></li>
+
         </div>
         <div class="fieldcontain">
-            <label>
-                <b>Nombre de personnes: ${nbPersonnes}</b>
-            </label>
+            <li><b>Etat de la demande:</b> <b style="color: #AA0E0E">${status}</b></li>
 
         </div>
         <br>

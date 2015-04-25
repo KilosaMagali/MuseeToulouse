@@ -22,6 +22,7 @@
         </style>
 	</head>
 	<body>
+
     <%
 
         museetoulouse.MuseePrefere mesPreferes = session.getAttribute("mesPreferes")

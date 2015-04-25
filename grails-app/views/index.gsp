@@ -98,7 +98,6 @@
                 margin-left: 20%;
                 border: 1px solid crimson;
                 width: 60%;
-                background-image:url(./images/background.jpg);
             }
 
 		</style>

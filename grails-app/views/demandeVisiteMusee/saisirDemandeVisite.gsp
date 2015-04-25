@@ -112,14 +112,14 @@
                 <label for="datedebut">
                     <b>Date Debut:</b>
                 </label>
-                <g:datePicker name="datedebut" value="${new Date()}" precision="day" years="${2015..2020}"/>
+               <g:datePicker  name="datedebut" value="${new Date()}" precision="day" years="${2015..2020}" />
 
             </div>
             <div class="fieldcontain">
                 <label for="datefin">
                     <b>Date Fin:</b>
                 </label>
-                <g:datePicker name="datefin" value="${new Date()}" precision="day" years="${2015..2020}"/>
+                <g:datePicker name="datefin" value="${new Date()}" precision="day" years="${2015..2020}" style="color: darkred"/>
             </div>
             <div class="fieldcontain">
                 <label for="nbpersonnes">
@@ -129,7 +129,7 @@
             </div>
             <br>
             <div style="float: right">
-                <g:submitButton name="Confirmer" value="Confirmer" />
+                <g:submitButton name="Confirmer" value="Confirmer" style="background-color: #999999"/>
             </div>
         </fieldset>
     </g:form>

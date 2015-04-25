@@ -100,17 +100,18 @@
     <fieldset class="form">
         <div class="fieldcontain">
 
-               <li><p><b>Votre Code est:</b> <b style="color: #AA0E0E">${codeDemande}</b> (A conserver pour consulter votre demande)</p>
+               <li><p><b>Votre Code est:</b> <b style="color: #AA0E0E">${codeDemande}</b> (A conserver pour suivre l'avancement de votre demande)</p>
                </li>
         </div>
         <div class="fieldcontain">
 
-               <li><b>Date Debut de visite:</b> <b style="color: #AA0E0E">${dateDebut}</b></li>
+               <li><b>Date Debut de visite:</b>  <g:datePicker  name="datedebut" value="${dateDebut}" precision="day" disabled="disabled" /></li>
 
 
         </div>
         <div class="fieldcontain">
-            <li><b>Date Fin de visite:</b> <b style="color: #AA0E0E">${dateFin}</b></li>
+            <li><b>Date Fin de visite:</b>  <g:datePicker  name="datedebut" value="${dateFin}" precision="day" disabled="disabled" /></li>
+
 
 
         </div>

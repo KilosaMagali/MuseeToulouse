@@ -16,6 +16,10 @@ class DemandeVisite {
         dateFinPeriode nullable: false
         code blank: false, nullable: false
     }
+    static mapping = {
+        musees fetch: "join"
+    }
+
 
 
 }

@@ -18,6 +18,10 @@ class Musee {
         accesMetro blank: false, nullable: true
         accesBus  blank: false, nullable: true
     }
+    static mapping = {
+        demandesVisite fetch: "join"
+
+    }
     String toString() {
         "$nom $telephone $accesMetro $accesBus $adresse $gestionnaire"
     }

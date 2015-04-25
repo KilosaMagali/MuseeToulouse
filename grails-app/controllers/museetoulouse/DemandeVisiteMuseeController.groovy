@@ -1,6 +1,7 @@
 package museetoulouse
 
 
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -16,6 +17,40 @@ class DemandeVisiteMuseeController {
     def renderPageSaisirDemandeVisite() {
         render(view: 'saisirDemandeVisite')
     }
+     def justCreatedDemandeVisiteMusee() {
+         MuseePrefere mesPreferes = session.getAttribute("mesPreferes")
+         if (!mesPreferes) {
+             println ("Allocation!")
+             mesPreferes = new MuseePrefere(idSession: session.getId())
+             session["mesPreferes"] = mesPreferes
+         }
+         Date dateDebut = params.datedebut
+         Date dateFin = params.datefin
+         int nbPersonnes = params.int('nbpersonnes')
+         print("NOOW"+dateDebut+" "+dateFin+" "+ nbPersonnes+"Oh yeah")
+         String unStatut = "En cours de traitement"
+         String unCode = "CODE"+""+nbPersonnes+""+mesPreferes.museePreferes.size()
+         DemandeVisite demandeVisite = new DemandeVisite(code: unCode, dateDebutPeriode: dateDebut, dateFinPeriode: dateFin,
+                 nbPersonnes: nbPersonnes, statut: unStatut)
+         if(!demandeVisite.validate()) {
+             demandeVisite.errors.allErrors.each {
+                 println it
+             }
+         }
+         DemandeVisiteMusee demandeVisiteMusee = new DemandeVisiteMusee(dateDemandeVisite: new Date())
+         demandeVisiteMusee.setDemandeVisite(demandeVisite)
+         //demandeVisiteMusee.setMusee(mesPreferes.museePreferes.getAt(0))
+         int sizePref = mesPreferes.museePreferes.size()
+         for (int i=0; i<sizePref; i++) {
+             demandeVisiteMusee.setMusee(mesPreferes.museePreferes.getAt(i))
+         }
+         demandeVisiteMusee.demandeVisite.addToMusees(demandeVisiteMusee)
+         demandeVisiteMusee.musee.addToDemandesVisite(demandeVisiteMusee)
+         demandeVisite.save()
+         demandeVisiteMusee.save()
+         println ("Demande de visite enregistrée, ton code est" + unCode)
+         render(view: "demandeVisiteEnregistree", model: [codeDemande: unCode, nbPersonnes: nbPersonnes,dateDebut : dateDebut, dateFin : dateFin])
+     }
 
     def show(DemandeVisiteMusee demandeVisiteMuseeInstance) {
         respond demandeVisiteMuseeInstance

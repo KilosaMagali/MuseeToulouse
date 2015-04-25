@@ -111,23 +111,24 @@
             <fieldset class="form">
                 <div class="fieldcontain">
                     <label for="nom">
-                       <b> Nom Musée :</b>
+                       <b>Nom Musée:</b>
                     </label>
                     <g:textField name="nom"  style="color: darkred"/>
 
                 </div>
                 <div class="fieldcontain">
                     <label for="codePostal">
-                       <b> Code Postale :</b>
+                       <b>Code Postale:</b>
                     </label>
                     <g:select name="codePostal" from="${museetoulouse.Adresse.list().codePostal.unique()}" style="color: darkred" />
                 </div>
                 <div class="fieldcontain">
                     <label for="rue">
-                       <b> Le nom Rue :</b>
+                       <b>Rue :</b>
                     </label>
                     <g:textField name="rue"  style="color: darkred"/>
                 </div>
+                <br>
                 <div style="float: right">
                     <input value="Rechercher" src="./images/rechercher.png" type="image" style="height: 40px" >
                 </div>

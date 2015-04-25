@@ -7,6 +7,13 @@ class DemandeVisiteMusee {
     static constraints = {
         dateDemandeVisite nullable: false
     }
+    static mapping = {
+        musee fetch: "join"
+        demandeVisite fetch: "join"
+    }
+    String toString() {
+        "$dateDemandeVisite $musee $demandeVisite"
+    }
 
 
 }

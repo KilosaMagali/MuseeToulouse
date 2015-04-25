@@ -106,35 +106,33 @@
 <body>
 <div id="index" >
 
-    <h1 align="center" style="color: brown">Saisir Demande Visite </h1>
-    <g:form controller="demandeVisiteMusee" action="justCreatedDemandeVisiteMusee">
-        <fieldset class="form">
-            <div class="fieldcontain">
-                <label for="datedebut">
-                    <b>Date Debut:</b>
-                </label>
-                <g:datePicker name="datedebut" value="${new Date()}" precision="day" years="${2015..2020}"/>
+    <h1 align="center" style="color: brown"> Votre demande a bien été enregistrée, Voici le resumé: </h1>
+    <fieldset class="form">
+        <div class="fieldcontain">
+            <label>
+                <b>Date Debut: ${codeDemande}</b>
+            </label>
 
-            </div>
-            <div class="fieldcontain">
-                <label for="datefin">
-                    <b>Date Fin:</b>
-                </label>
-                <g:datePicker name="datefin" value="${new Date()}" precision="day" years="${2015..2020}"/>
-            </div>
-            <div class="fieldcontain">
-                <label for="nbpersonnes">
-                    <b>Nombre de personnes:</b>
-                </label>
-                <g:select name="nbpersonnes" from="${[1,2,3,4,5,6]}" style="color: darkred" />
-            </div>
-            <br>
-            <div style="float: right">
-                <g:submitButton name="Confirmer" value="Confirmer" />
-            </div>
-        </fieldset>
-    </g:form>
-    <li>${codeDemande}</li>
+        </div>
+        <div class="fieldcontain">
+            <label>
+                <b>Date Debut: ${dateDebut}</b>
+            </label>
+
+        </div>
+        <div class="fieldcontain">
+            <label>
+                <b>Date Fin:${dateFin}</b>
+            </label>
+        </div>
+        <div class="fieldcontain">
+            <label>
+                <b>Nombre de personnes: ${nbPersonnes}</b>
+            </label>
+
+        </div>
+        <br>
+    </fieldset>
 </div>
 </body>
 </html>

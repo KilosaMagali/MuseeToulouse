@@ -8,11 +8,22 @@ import grails.transaction.Transactional
 class MuseeController {
     MuseeService museeService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+    def nomMusee
+    def codePostal
+    def rue
     def doSearchMusee() {
+        if(nomMusee == null || params.nomMusee != null){
+            nomMusee = params.nomMusee
+        }
+        if(codePostal == null || params.codePostal != null){
+            codePostal = params.codePostal
+        }
+        if(rue == null || params.nomRue != null){
+            rue = params.rue
+        }
         params.max = 5
-        def museeList = museeService.searchMusee(params.nom,params.codePostal, params.rue,params)
-        render(view: 'doSearchMusee', model: [museeInstanceList:museeList, museeInstanceCount: museeList.totalCount ])
+        def museeList = museeService.searchMusee(nomMusee,codePostal, rue,params)
+        render(view: 'index', model: [museeInstanceList:museeList, museeInstanceCount: museeList.totalCount ])
         //[museeInstanceList:museeList, museeInstanceCount: museeList.size()]
     }
 

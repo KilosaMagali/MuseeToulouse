@@ -106,13 +106,13 @@
 <div id="index" >
 
             <h1 align="center" style="color: brown">Rechercher Musée </h1>
-        <g:form controller="musee" action="doSearchMusee">
+        <g:form controller="musee" action="doSearchMusee" method="post">
             <fieldset class="form">
                 <div class="fieldcontain">
-                    <label for="nom">
+                    <label for="nomMusee">
                        <b>Nom Musée:</b>
                     </label>
-                    <g:textField name="nom"  style="color: darkred"/>
+                    <g:textField name="nomMusee"  style="color: darkred"/>
 
                 </div>
                 <div class="fieldcontain">
@@ -129,7 +129,7 @@
                 </div>
                 <br>
                 <div style="float: right">
-                    <input value="Rechercher" src="./images/rechercher.png" type="image" style="height: 40px" >
+                    <input value="Rechercher" action="doSearchMusee" src="./images/rechercher.png" type="image" style="height: 40px" >
                 </div>
             </fieldset>
         </g:form>

@@ -23,7 +23,7 @@ class MuseeController {
         }
         params.max = 5
         def museeList = museeService.searchMusee(nomMusee,codePostal, rue,params)
-        render(view: 'index', model: [museeInstanceList:museeList, museeInstanceCount: 1])
+        render(view: 'index', model: [museeInstanceList:museeList, museeInstanceCount: museeList.totalCount])
         //[museeInstanceList:museeList, museeInstanceCount: museeList.size()]
     }
 

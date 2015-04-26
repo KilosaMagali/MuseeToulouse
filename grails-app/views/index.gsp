@@ -103,7 +103,9 @@
 		</style>
 	</head>
 	<body>
-    <li><a class="Mes Demandes Visite" href="${createLink(uri: 'http://localhost:8080/MuseeToulouse/demandeVisite')}">Mes Demandes Visite</a></li> <br>
+    <div class="nav" role="navigation">
+        <a class="Mes Demandes Visite" href="${createLink(uri: 'http://localhost:8080/MuseeToulouse/demandeVisite')}">Mes demandes de visites</a>
+    </div></br></br>
 <div id="index" >
 
             <h1 align="center" style="color: brown">Rechercher Musée </h1>

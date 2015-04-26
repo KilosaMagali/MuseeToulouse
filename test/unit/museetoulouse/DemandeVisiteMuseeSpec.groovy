@@ -9,30 +9,41 @@ import spock.lang.Unroll
  */
 @TestFor(DemandeVisiteMusee)
 class DemandeVisiteMuseeSpec extends Specification {
-    //A tester dans test d'integration
-    /*@Unroll
-    void "test une demande de visite musée valide"(Date uneDate) {
-        given: "une demandeVisiteMusee est initialisée de manière valide"
-        DemandeVisiteMusee demandeVisiteMusee = new DemandeVisiteMusee(dateDemandeVisite: uneDate)
-        Musee musee = Mock(Musee)
-        DemandeVisite demandeVisite = Mock(DemandeVisite)
-        musee.addToDemandesVisite(demandeVisiteMusee)
-        demandeVisite.addToMusees(demandeVisiteMusee)
-        expect: "La demandeVisiteMusee est valide"
-        demandeVisiteMusee.validate() == true
-        where:
-        uneDate = Mock(Date)
-    }
-
     @Unroll
-    void "test une demande de visite musée invalide"(Date uneDate) {
-        given: "une demande est initialisée de manière invalide"
-        DemandeVisiteMusee demandeVisiteMusee = new DemandeVisiteMusee(dateDemandeVisite: uneDate)
-        expect: "La demandeVisiteMusee est valide"
-        demandeVisiteMusee.validate() == false
+    void "test de validite d'une DemandeVisiteMusee "(Date dateDemandeVisite, def _) {
+        given: "une demandeVisiteMusee est initialise avec une dateDemandeVisite, un musee et une demandeVisite"
+        DemandeVisiteMusee demandeVisiteMusee = new DemandeVisiteMusee(
+                dateDemandeVisite: dateDemandeVisite,
+                musee: Mock(Musee),
+                demandeVisite:  Mock(DemandeVisite))
+        expect: "la DemandeVisiteMusee est valide"
+        demandeVisiteMusee.validate()
         where:
-        uneDate = null
-
-    }*/
+        dateDemandeVisite | _
+        new Date(2015,02,02) | _
+    }
+    @Unroll
+    void "test d'invalidite d'une DemandeVisiteMuseet non valide"(Date dateDemandeVisite, Musee musee, DemandeVisite demandeVisite) {
+        given: "une DemandeVisiteMusee initialise avec une dateDemandeVisite, un musee et une demandeVisite"
+        DemandeVisiteMusee demandeVisiteMusee = new DemandeVisiteMusee(
+                dateDemandeVisite: dateDemandeVisite,
+                musee: musee,
+                demandeVisite: demandeVisite)
+        expect: "la DemandeVisiteMusee est non valide"
+        !demandeVisiteMusee.validate()
+        where:
+        dateDemandeVisite | musee| demandeVisite
+        null | Mock(Musee) | Mock(DemandeVisite)
+    }
+    @Unroll
+    void "test toString"() {
+        given: "une DemandeVisiteMusee"
+        Date dateDemandeVisite = new Date(2015,02,02)
+        DemandeVisiteMusee demandeVisiteMusee = new DemandeVisiteMusee(dateDemandeVisite: dateDemandeVisite)
+        when: "on veut l'afficher"
+        String toString = demandeVisiteMusee.toString()
+        then: "le toString est bien affiche"
+        toString == "$dateDemandeVisite $musee $demandeVisite"
+    }
 
 }

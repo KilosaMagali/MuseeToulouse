@@ -20,6 +20,7 @@ class Musee {
     }
     static mapping = {
         demandesVisite fetch: "join"
+        gestionnaire fetch: "join"
 
     }
     String toString() {

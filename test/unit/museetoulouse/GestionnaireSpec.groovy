@@ -39,4 +39,14 @@ class GestionnaireSpec extends Specification {
         where:
         unNom = ''
     }
+    @Unroll
+    void "test toString"() {
+        given: "un gestionnaire"
+        String nom = "Mairie de Toulouse - DGA Culture"
+        Gestionnaire gestionnaire = new Gestionnaire(nom: nom)
+        when: "on veut l'afficher"
+        String toString = gestionnaire.toString()
+        then: "le toString est bien affiche"
+        toString == nom
+    }
 }

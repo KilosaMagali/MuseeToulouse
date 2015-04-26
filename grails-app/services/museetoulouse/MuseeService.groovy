@@ -7,13 +7,28 @@ class MuseeService {
 
 
     Musee insertOrUpdateMusee(Musee unMusee, Gestionnaire unGestionnaire) {
-        unGestionnaire.addToMusees(unMusee).save()
+        unMusee.setGestionnaire(unGestionnaire)
+        unGestionnaire.save()
+        unMusee.save()
         unMusee
     }
 
     void deleteMusee(Musee unMusee) {
         unMusee.gestionnaire.removeFromMusees(unMusee)
         unMusee.delete()
+    }
+    Musee insertOrUpdateMuseumForAddressAndManager(Musee musee, Adresse adresse, Gestionnaire gestionnaire) {
+        musee.setAdresse(adresse)
+        musee.setGestionnaire(gestionnaire)
+        adresse.save()
+        gestionnaire.save()
+        musee.save()
+    }
+
+    Musee insertOrUpdateMuseumForAddress(Musee musee, Adresse adresse) {
+        musee.setAdresse(adresse)
+        adresse.save()
+        musee.save()
     }
     List<Musee> searchMusee(String nomMusee, String codePostal, String uneRue,def params) {
         def criteria = Musee.createCriteria()

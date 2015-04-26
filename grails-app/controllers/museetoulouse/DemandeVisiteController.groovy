@@ -7,7 +7,14 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class DemandeVisiteController {
 
+    MuseeService museeService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    def searchDemande() {
+        params.max = 5
+        def demandeList = museeService.getDemandeVisite(params.code)
+        render(view: 'rechercheDemande', model: [demandeVisiteInstanceList: demandeList, demandeVisiteInstanceCount: 1])
+        //[museeInstanceList:museeList, museeInstanceCount: museeList.size()]
+    }
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)

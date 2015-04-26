@@ -5,6 +5,11 @@ import grails.transaction.Transactional
 @Transactional
 class MuseeService {
 
+    DemandeVisite getDemandeVisite(String code){
+        if(code != null)
+            code = code.trim()
+        return DemandeVisite.findByCode(code)
+    }
 
     Musee insertOrUpdateMusee(Musee unMusee, Gestionnaire unGestionnaire) {
         unMusee.setGestionnaire(unGestionnaire)
@@ -49,6 +54,4 @@ class MuseeService {
         }
         res
     }
-
-
 }

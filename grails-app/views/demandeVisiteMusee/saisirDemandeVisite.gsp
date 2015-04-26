@@ -152,14 +152,7 @@
 
         <tr>
             <th><g:message code="musee.nom.label" default="Nom Musee" /></th>
-            <th>
-                <% if(mesPreferes?.museePreferes){ %>
-                <g:form controller="museePrefere" action="removeAllFromMesPreferes">
-                    <input src="../images/close.png" placeholder="DeleteAll" value="Supprimer" type="image">
-                </g:form>
-                <% }
-                %>
-            </th>
+
         </tr>
         <tbody>
         <%
@@ -170,7 +163,6 @@
                 <g:form controller="museePrefere" action="removeFromMesPreferes">
                     <input type="hidden" name="nomMusee" value="${fieldValue(bean: musee, field: "nom")}" />
                     <td>${fieldValue(bean: musee, field: "nom")}</td>
-                    <td><input src="../images/delete.png" value="Supprimer" type="image"></td>
                 </g:form>
             </tr>
         </g:each>

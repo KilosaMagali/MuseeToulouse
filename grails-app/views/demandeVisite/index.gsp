@@ -17,17 +17,22 @@
     </head>
 	<body>
     <div id="index" >
-    <form controller="demandeVisite" action="doSearchMusee" method="post">
-    <div class="fieldcontain">
-        <label for="codeDemande">
-            <b>Votre code :</b>
-        </label>
-        <g:textField name="codeDemande"  style="color: darkred"/>
+        <h1 align="center" style="color: brown">Entrer le code de votre demande </h1>
+        <g:form controller="demandeVisite" action="searchDemande" method="post">
+            <fieldset class="form">
+                <div class="fieldcontain">
+                    <label for="code">
+                        <b>Code:</b>
+                    </label>
+                    <g:textField name="code"  style="color: darkred"/>
+                </div>
+                <br>
+                <div style="float: right">
+                    <input value="Rechercher" action="searchDemande" src="./images/rechercher.png" type="image" style="height: 40px" >
+                </div>
+            </fieldset>
+        </g:form>
     </div>
-        <div style=" float: right">
-            <input value="Valider" action="searchMesDemandes" src="./images/rechercher.png" type="image" style="height: 40px" >
-        </div>
-    </form>
-    </div>
+
 	</body>
 </html>
